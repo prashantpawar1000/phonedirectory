@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="phonedirectory">
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Mean Stack Phone Directory</title>
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="/node_modules/angular/angular.js"></script>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <div class="container" ng-controller="phonedirectoryctr as pd">
+        <header>
+            <h1 class="text-center">{{pd.title}}</h1>
+        </header>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile Number</th>
+                    <th>Home Number</th>
+                    <th>Work Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.firstName" class="form-control"
+                            placeholder="First Name">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.lastName" class="form-control"
+                            placeholder="Last Name">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.email" class="form-control" placeholder="Email">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.mobileNumber" class="form-control"
+                            placeholder="Mobile Number">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.homeNumber" class="form-control"
+                            placeholder="Home Number">
+                    </td>
+                    <td>
+                        <input type="text" ng-model="pd.phonedirectory.workNumber" class="form-control"
+                            placeholder="Work Number">
+                    </td>
+                    <td class="text-nowrap">
+                        <input type="button" class="btn btn-primary btn-sm" value="Add"
+                            ng-disabled="pd.phonedirectory._id" ng-click="pd.AddPhoneDetails()">
+                        <input type="button" class="btn btn-success btn-sm" value="Update"
+                            ng-disabled="!pd.phonedirectory._id"
+                            ng-click="pd.UpdatePhoneDetails(pd.phonedirectory._id)">
+                    </td>
+                </tr>
+                <tr ng-repeat="phoneDetail in pd.phoneDetails">
+                    <td>{{phoneDetail.firstName}}</td>
+                    <td>{{phoneDetail.lastName}}</td>
+                    <td>{{phoneDetail.email}}</td>
+                    <td>{{phoneDetail.mobileNumber}}</td>
+                    <td>{{phoneDetail.homeNumber}}</td>
+                    <td>{{phoneDetail.workNumber}}</td>
+                    <td class="text-nowrap">
+                        <input type="button" class="btn btn-info btn-sm" value="Edit" ng-click="pd.EditPhoneDetails(phoneDetail._id)">
+                        <input type="button" class="btn btn-danger btn-sm" value="Delete"
+                            ng-click="pd.DeletePhoneDetails(phoneDetail._id)">
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+</html>
